@@ -36,7 +36,7 @@ function HistoryPage() {
 const response =
   await axios.get(
 
-    "http://localhost:5000/my-files",
+    "import.meta.env.VITE_API_URL/my-files",
 
     {
 
@@ -73,7 +73,7 @@ const deleteFile = async (id) => {
 
     await axios.delete(
 
-      `http://localhost:5000/delete-file/${id}`,
+      `import.meta.env.VITE_API_URL/delete-file/${id}`,
 
       {
 

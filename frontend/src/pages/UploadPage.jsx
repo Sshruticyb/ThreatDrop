@@ -35,7 +35,7 @@ function UploadPage() {
 
     const response = await axios.post(
 
-      "http://localhost:5000/upload",
+      "import.meta.env.VITE_API_URL/upload",
 
       formData,
 

@@ -50,7 +50,7 @@ function WarningPage() {
       const response =
         await axios.get(
 
-          `http://localhost:5000/file-info/${uuid}`
+          `import.meta.env.VITE_API_URL/file-info/${uuid}`
 
         );
 
@@ -149,7 +149,7 @@ function WarningPage() {
 
               <a
 
-                href={`http://localhost:5000/file/${uuid}`}
+                href={`import.meta.env.VITE_API_URL/${uuid}`}
 
                 className="bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-3 px-6 rounded-xl transition flex-1 text-center"
 

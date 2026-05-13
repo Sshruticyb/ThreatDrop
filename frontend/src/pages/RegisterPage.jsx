@@ -24,7 +24,7 @@ function RegisterPage() {
 
       await axios.post(
 
-        "http://localhost:5000/register",
+        "import.meta.env.VITE_API_URL/register",
 
         {
 

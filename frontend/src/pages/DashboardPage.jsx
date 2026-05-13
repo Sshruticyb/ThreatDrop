@@ -33,7 +33,7 @@ function DashboardPage() {
       const response =
         await axios.get(
 
-          "http://localhost:5000/dashboard-stats"
+          "import.meta.env.VITE_API_URL/dashboard-stats"
 
         );
 
