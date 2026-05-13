@@ -39,7 +39,7 @@ function App() {
         {/* LOGIN */}
 
         <Route
-          path="/login"
+          path="${import.meta.env.VITE_API_URL}/login"
           element={<LoginPage />}
         />
 
@@ -48,7 +48,7 @@ function App() {
         {/* REGISTER */}
 
         <Route
-          path="/register"
+          path="${import.meta.env.VITE_API_URL}/register"
           element={<RegisterPage />}
         />
 
@@ -104,7 +104,7 @@ function App() {
                   <Route
                     path="*"
                     element={
-                      <Navigate to="/login" />
+                      <Navigate to="${import.meta.env.VITE_API_URL}/login" />
                     }
                   />
 

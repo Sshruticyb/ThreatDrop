@@ -42,7 +42,7 @@ function RegisterPage() {
 
 
 
-      navigate("/login");
+      navigate("${import.meta.env.VITE_API_URL}/login");
 
     } catch (error) {
 
@@ -128,7 +128,7 @@ function RegisterPage() {
   {" "}
 
   <Link
-    to="/login"
+    to="${import.meta.env.VITE_API_URL}/login"
     className="text-cyan-400 hover:underline"
   >
 
