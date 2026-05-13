@@ -9,7 +9,7 @@ const analyzeFile = require("./security/threatAnalyzer");
 const AccessLog = require("./models/AccessLog");
 const analyzeURL = require("./security/urlAnalyzer");
 
-const File = require("./models/File");
+const File = require("./models/file");
 
 const app = express();
 const bcrypt = require("bcryptjs");
