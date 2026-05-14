@@ -6,26 +6,16 @@ import {
   Navigate
 
 } from "react-router-dom";
-
 import Layout from "./components/Layout";
-
 import ProtectedRoute from "./components/ProtectedRoute";
-
 import DashboardPage from "./pages/DashboardPage";
-
 import UploadPage from "./pages/UploadPage";
-
 import SuccessPage from "./pages/SuccessPage";
-
 import WarningPage from "./pages/WarningPage";
-
 import PhishingPage from "./pages/PhishingPage";
-
 import LoginPage from "./pages/LoginPage";
-
 import RegisterPage from "./pages/RegisterPage";
 import HistoryPage from "./pages/HistoryPage";
-
 {/* redeploy */}
 
 function App() {
