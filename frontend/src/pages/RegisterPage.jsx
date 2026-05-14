@@ -20,19 +20,20 @@ function RegisterPage() {
 
 
 
-
   const handleRegister = async () => {
 
     try {
 
-      await axios.post(
+      const response = await axios.post(
 
         `${import.meta.env.VITE_API_URL}/register`,
 
         {
 
           username,
+
           email,
+
           password
 
         }
@@ -41,11 +42,17 @@ function RegisterPage() {
 
 
 
+      console.log(response.data);
+
+
+
       alert("Registration successful");
 
 
 
       navigate("/login");
+
+
 
     } catch (error) {
 
@@ -61,14 +68,13 @@ function RegisterPage() {
 
 
 
-
   return (
 
     <div className="min-h-screen bg-black flex items-center justify-center p-6">
 
-      <div className="w-full max-w-md bg-zinc-900 border border-cyan-500 rounded-3xl p-10 shadow-2xl">
+      <div className="w-full max-w-md bg-zinc-900 border border-cyan-500 rounded-3xl p-10">
 
-        {/* TITLE */}
+
 
         <h1 className="text-5xl font-bold text-cyan-400 text-center mb-4">
 
@@ -78,15 +84,13 @@ function RegisterPage() {
 
 
 
-        <p className="text-zinc-400 text-center mb-10 text-lg">
+        <p className="text-zinc-400 text-center mb-10">
 
           Create Account
 
         </p>
 
 
-
-        {/* USERNAME */}
 
         <input
 
@@ -96,19 +100,13 @@ function RegisterPage() {
 
           value={username}
 
-          onChange={(e) =>
+          onChange={(e) => setUsername(e.target.value)}
 
-            setUsername(e.target.value)
-
-          }
-
-          className="w-full bg-zinc-800 border border-cyan-500 rounded-2xl px-5 py-4 text-white mb-5 outline-none"
+          className="w-full bg-zinc-800 border border-cyan-500 rounded-2xl px-5 py-4 text-white mb-5"
 
         />
 
 
-
-        {/* EMAIL */}
 
         <input
 
@@ -118,19 +116,13 @@ function RegisterPage() {
 
           value={email}
 
-          onChange={(e) =>
+          onChange={(e) => setEmail(e.target.value)}
 
-            setEmail(e.target.value)
-
-          }
-
-          className="w-full bg-zinc-800 border border-cyan-500 rounded-2xl px-5 py-4 text-white mb-5 outline-none"
+          className="w-full bg-zinc-800 border border-cyan-500 rounded-2xl px-5 py-4 text-white mb-5"
 
         />
 
 
-
-        {/* PASSWORD */}
 
         <input
 
@@ -140,25 +132,19 @@ function RegisterPage() {
 
           value={password}
 
-          onChange={(e) =>
+          onChange={(e) => setPassword(e.target.value)}
 
-            setPassword(e.target.value)
-
-          }
-
-          className="w-full bg-zinc-800 border border-cyan-500 rounded-2xl px-5 py-4 text-white mb-8 outline-none"
+          className="w-full bg-zinc-800 border border-cyan-500 rounded-2xl px-5 py-4 text-white mb-8"
 
         />
 
 
 
-        {/* REGISTER BUTTON */}
-
         <button
 
-          type="button"
-
           onClick={handleRegister}
+
+          type="button"
 
           className="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-4 rounded-2xl transition"
 
@@ -170,12 +156,9 @@ function RegisterPage() {
 
 
 
-        {/* LOGIN LINK */}
-
         <p className="text-zinc-400 text-center mt-8">
 
-          Already have an account?
-          {" "}
+          Already have an account?{" "}
 
 
 
@@ -183,7 +166,7 @@ function RegisterPage() {
 
             to="/login"
 
-            className="text-cyan-400 hover:text-cyan-300"
+            className="text-cyan-400"
 
           >
 
@@ -192,6 +175,8 @@ function RegisterPage() {
           </Link>
 
         </p>
+
+
 
       </div>
 
