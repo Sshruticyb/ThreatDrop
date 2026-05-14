@@ -1,11 +1,8 @@
-import {
-
-  useEffect,
-  useState
-
-} from "react";
+import { useEffect, useState } from "react";
 
 import axios from "axios";
+
+import Sidebar from "../components/Sidebar";
 
 
 
@@ -13,54 +10,68 @@ function DashboardPage() {
 
   const [stats, setStats] = useState({
 
-  totalUploads: 0,
+    totalUploads: 0,
 
-  quarantinedFiles: 0,
+    quarantinedFiles: 0,
 
-  totalDownloads: 0,
+    totalDownloads: 0,
 
-  recentFiles: []
+    recentFiles: []
 
-});
+  });
+
+
+
+  const [loading, setLoading] = useState(true);
 
 
 
   useEffect(() => {
 
-  const fetchDashboard = async () => {
+    const fetchDashboard = async () => {
 
-    try {
+      try {
 
-      const response = await axios.get(
+        const response = await axios.get(
 
-        `${import.meta.env.VITE_API_URL}/dashboard-stats`
+          `${import.meta.env.VITE_API_URL}/dashboard-stats`
 
-      );
-
-
-
-      setStats(response.data);
-
-    } catch (error) {
-
-      console.log(error);
-
-    }
-
-  };
+        );
 
 
 
-  fetchDashboard();
-
-}, []);
+        console.log(response.data);
 
 
-  if (!stats) {
+
+        setStats(response.data);
+
+      } catch (error) {
+
+        console.log(error);
+
+      } finally {
+
+        setLoading(false);
+
+      }
+
+    };
+
+
+
+    fetchDashboard();
+
+  }, []);
+
+
+
+
+  if (loading) {
 
     return (
 
-      <div className="min-h-screen bg-black flex items-center justify-center text-white text-3xl">
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
 
         Loading Dashboard...
 
@@ -75,140 +86,135 @@ function DashboardPage() {
 
   return (
 
-    <div className="text-white p-6">
+    <div className="flex bg-black min-h-screen text-white">
 
-      {/* HEADER */}
-
-      <h1 className="text-5xl font-bold text-cyan-400 mb-3">
-
-        ThreatDrop Dashboard
-
-      </h1>
+      <Sidebar />
 
 
 
-      <p className="text-zinc-400 mb-10">
+      <div className="flex-1 p-10">
 
-        Real-Time Security Monitoring
+        <h1 className="text-6xl font-bold text-cyan-400 mb-4">
 
-      </p>
+          ThreatDrop Dashboard
 
-
-
-      {/* STATS */}
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-
-        {/* TOTAL UPLOADS */}
-
-        <div className="bg-zinc-900 border border-cyan-500 rounded-3xl p-8 shadow-xl">
-
-          <h2 className="text-zinc-400 mb-3 text-lg">
-
-            Total Uploads
-
-          </h2>
+        </h1>
 
 
 
-          <p className="text-5xl font-bold text-cyan-400">
+        <p className="text-zinc-400 mb-10 text-xl">
 
-            {stats.totalUploads}
+          Real-Time Security Monitoring
 
-          </p>
+        </p>
+
+
+
+        {/* STATS */}
+
+        <div className="grid grid-cols-3 gap-8 mb-10">
+
+          <div className="bg-zinc-900 border border-cyan-500 rounded-3xl p-8">
+
+            <h2 className="text-zinc-400 text-2xl mb-4">
+
+              Total Uploads
+
+            </h2>
+
+
+
+            <p className="text-6xl font-bold text-cyan-400">
+
+              {stats.totalUploads}
+
+            </p>
+
+          </div>
+
+
+
+          <div className="bg-zinc-900 border border-red-500 rounded-3xl p-8">
+
+            <h2 className="text-zinc-400 text-2xl mb-4">
+
+              Quarantined Files
+
+            </h2>
+
+
+
+            <p className="text-6xl font-bold text-red-400">
+
+              {stats.quarantinedFiles}
+
+            </p>
+
+          </div>
+
+
+
+          <div className="bg-zinc-900 border border-yellow-400 rounded-3xl p-8">
+
+            <h2 className="text-zinc-400 text-2xl mb-4">
+
+              Total Downloads
+
+            </h2>
+
+
+
+            <p className="text-6xl font-bold text-yellow-300">
+
+              {stats.totalDownloads}
+
+            </p>
+
+          </div>
 
         </div>
 
 
 
-        {/* QUARANTINED */}
+        {/* RECENT FILES */}
 
-        <div className="bg-zinc-900 border border-red-500 rounded-3xl p-8 shadow-xl">
+        <div className="bg-zinc-900 border border-cyan-500 rounded-3xl p-8">
 
-          <h2 className="text-zinc-400 mb-3 text-lg">
+          <h2 className="text-4xl font-bold text-cyan-400 mb-8">
 
-            Quarantined Files
-
-          </h2>
-
-
-
-          <p className="text-5xl font-bold text-red-400">
-
-            {stats.quarantinedFiles}
-
-          </p>
-
-        </div>
-
-
-
-        {/* DOWNLOADS */}
-
-        <div className="bg-zinc-900 border border-yellow-500 rounded-3xl p-8 shadow-xl">
-
-          <h2 className="text-zinc-400 mb-3 text-lg">
-
-            Total Downloads
+            Recent Uploads
 
           </h2>
 
 
 
-          <p className="text-5xl font-bold text-yellow-400">
+          <div className="flex flex-col gap-6">
 
-            {stats.totalDownloads}
+            {stats?.recentFiles?.length > 0 ? (
 
-          </p>
-
-        </div>
-
-      </div>
-
-
-
-      {/* RECENT FILES */}
-
-      <div className="bg-zinc-900 border border-cyan-500 rounded-3xl p-8 shadow-xl">
-
-        <h2 className="text-3xl font-bold text-cyan-400 mb-8">
-
-          Recent Uploads
-
-        </h2>
-
-
-
-        <div className="space-y-5">
-
-          {
-stats?.recentFiles?.map (
-
-              (file, index) => (
+              stats.recentFiles.map((file) => (
 
                 <div
 
-                  key={index}
+                  key={file._id}
 
-                  className="bg-zinc-800 rounded-2xl p-5 flex justify-between items-center"
+                  className="bg-zinc-800 rounded-2xl p-6 flex justify-between items-center"
 
                 >
 
                   <div>
 
-                    <p className="font-bold text-lg break-all">
+                    <h3 className="text-2xl font-bold">
 
                       {file.filename}
 
-                    </p>
+                    </h3>
 
 
 
                     <p className="text-zinc-400 mt-2">
 
-                      Downloads:
-                      {" "}
-                      {file.downloadCount || 0}
+                      Downloads: {file.downloadCount || 0}
 
                     </p>
 
@@ -216,15 +222,7 @@ stats?.recentFiles?.map (
 
                     <p className="text-zinc-500 text-sm mt-1">
 
-                      {
-
-                        new Date(
-
-                          file.createdAt
-
-                        ).toLocaleString()
-
-                      }
+                      {new Date(file.createdAt).toLocaleString()}
 
                     </p>
 
@@ -232,11 +230,11 @@ stats?.recentFiles?.map (
 
 
 
-                  {
+                  <div>
 
-                    file.quarantined ? (
+                    {file.quarantined ? (
 
-                      <span className="text-red-400 font-bold">
+                      <span className="text-red-400 font-bold text-xl">
 
                         QUARANTINED
 
@@ -244,23 +242,31 @@ stats?.recentFiles?.map (
 
                     ) : (
 
-                      <span className="text-green-400 font-bold">
+                      <span className="text-green-400 font-bold text-xl">
 
                         SAFE
 
                       </span>
 
-                    )
+                    )}
 
-                  }
+                  </div>
 
                 </div>
 
-              )
+              ))
 
-            )
+            ) : (
 
-          }
+              <p className="text-zinc-500">
+
+                No uploads found.
+
+              </p>
+
+            )}
+
+          </div>
 
         </div>
 
@@ -271,5 +277,7 @@ stats?.recentFiles?.map (
   );
 
 }
+
+
 
 export default DashboardPage;
