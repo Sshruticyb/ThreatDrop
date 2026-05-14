@@ -24,18 +24,17 @@ function RegisterPage() {
 
       await axios.post(
 
-        "${import.meta.env.VITE_API_URL}/register",
+  `${import.meta.env.VITE_API_URL}/register`,
 
-        {
+  {
 
-          username,
-          email,
-          password
+    username,
+    email,
+    password
 
-        }
+  }
 
-      );
-
+);
 
 
       alert("Registration successful");
