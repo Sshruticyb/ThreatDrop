@@ -2,10 +2,15 @@ import { useState } from "react";
 
 import axios from "axios";
 
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+
 
 function RegisterPage() {
+
+  const navigate = useNavigate();
+
+
 
   const [username, setUsername] = useState("");
 
@@ -13,68 +18,67 @@ function RegisterPage() {
 
   const [password, setPassword] = useState("");
 
-  const navigate = useNavigate();
 
 
 
+  const handleRegister = async () => {
 
-  const handleRegister = async (e) => {
+    try {
 
-  e.preventDefault();
+      await axios.post(
 
-  try {
+        `${import.meta.env.VITE_API_URL}/register`,
 
-    await axios.post(
+        {
 
-      `${import.meta.env.VITE_API_URL}/register`,
+          username,
+          email,
+          password
 
-      {
+        }
 
-        username,
-        email,
-        password
-
-      }
-
-    );
+      );
 
 
 
-    alert("Registration successful");
+      alert("Registration successful");
 
 
 
-    navigate("/login");
+      navigate("/login");
 
-  } catch (error) {
+    } catch (error) {
 
-    console.log(error);
+      console.log(error);
 
 
 
-    alert("Registration failed");
+      alert("Registration failed");
 
-  }
+    }
 
-};
-   
- 
+  };
+
 
 
 
   return (
 
-    <div className="min-h-screen bg-black flex items-center justify-center text-white">
+    <div className="min-h-screen bg-black flex items-center justify-center p-6">
 
-      <div className="bg-zinc-900 border border-cyan-500 rounded-2xl p-10 w-[450px] shadow-2xl">
+      <div className="w-full max-w-md bg-zinc-900 border border-cyan-500 rounded-3xl p-10 shadow-2xl">
 
-        <h1 className="text-4xl font-bold text-cyan-400 text-center mb-3">
+        {/* TITLE */}
+
+        <h1 className="text-5xl font-bold text-cyan-400 text-center mb-4">
 
           ThreatDrop
 
         </h1>
 
-        <p className="text-zinc-400 text-center mb-8">
+
+
+        <p className="text-zinc-400 text-center mb-10 text-lg">
 
           Create Account
 
@@ -82,66 +86,112 @@ function RegisterPage() {
 
 
 
+        {/* USERNAME */}
+
         <input
+
           type="text"
+
           placeholder="Username"
+
           value={username}
-          onChange={(e) => {
-            setUsername(e.target.value);
-          }}
-          className="w-full bg-zinc-800 border border-cyan-500 rounded-xl p-4 outline-none mb-5"
+
+          onChange={(e) =>
+
+            setUsername(e.target.value)
+
+          }
+
+          className="w-full bg-zinc-800 border border-cyan-500 rounded-2xl px-5 py-4 text-white mb-5 outline-none"
+
         />
 
 
 
+        {/* EMAIL */}
+
         <input
+
           type="email"
+
           placeholder="Email"
+
           value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-          className="w-full bg-zinc-800 border border-cyan-500 rounded-xl p-4 outline-none mb-5"
+
+          onChange={(e) =>
+
+            setEmail(e.target.value)
+
+          }
+
+          className="w-full bg-zinc-800 border border-cyan-500 rounded-2xl px-5 py-4 text-white mb-5 outline-none"
+
         />
 
 
+
+        {/* PASSWORD */}
 
         <input
+
           type="password"
+
           placeholder="Password"
+
           value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-          className="w-full bg-zinc-800 border border-cyan-500 rounded-xl p-4 outline-none mb-6"
+
+          onChange={(e) =>
+
+            setPassword(e.target.value)
+
+          }
+
+          className="w-full bg-zinc-800 border border-cyan-500 rounded-2xl px-5 py-4 text-white mb-8 outline-none"
+
         />
 
 
+
+        {/* REGISTER BUTTON */}
 
         <button
+
+          type="button"
+
           onClick={handleRegister}
-          className="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-3 rounded-xl transition"
+
+          className="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-4 rounded-2xl transition"
+
         >
 
           Register
 
         </button>
-        <p className="text-zinc-400 text-center mt-6">
 
-  Already have an account?
 
-  {" "}
 
-  <Link
-    to="${import.meta.env.VITE_API_URL}/login"
-    className="text-cyan-400 hover:underline"
-  >
+        {/* LOGIN LINK */}
 
-    Login
+        <p className="text-zinc-400 text-center mt-8">
 
-  </Link>
+          Already have an account?
+          {" "}
 
-</p>
+
+
+          <Link
+
+            to="/login"
+
+            className="text-cyan-400 hover:text-cyan-300"
+
+          >
+
+            Login
+
+          </Link>
+
+        </p>
 
       </div>
 
@@ -150,5 +200,7 @@ function RegisterPage() {
   );
 
 }
+
+
 
 export default RegisterPage;
