@@ -11,30 +11,31 @@ import axios from "axios";
 
 function DashboardPage() {
 
-  const [stats, setStats] =
-    useState(null);
+  const [stats, setStats] = useState({
 
+  totalUploads: 0,
+
+  quarantinedFiles: 0,
+
+  totalDownloads: 0,
+
+  recentFiles: []
+
+});
 
 
 
   useEffect(() => {
 
-    fetchStats();
-
-  }, []);
-
-
-
-
-  const fetchStats = async () => {
+  const fetchDashboard = async () => {
 
     try {
 
       const response = await axios.get(
 
-  `${import.meta.env.VITE_API_URL}/dashboard-stats`
+        `${import.meta.env.VITE_API_URL}/dashboard-stats`
 
-);
+      );
 
 
 
@@ -49,6 +50,10 @@ function DashboardPage() {
   };
 
 
+
+  fetchDashboard();
+
+}, []);
 
 
   if (!stats) {
@@ -177,8 +182,7 @@ function DashboardPage() {
         <div className="space-y-5">
 
           {
-
-            stats.recentFiles.map(
+stats?.recentFiles?.map (
 
               (file, index) => (
 
