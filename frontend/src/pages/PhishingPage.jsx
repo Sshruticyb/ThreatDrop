@@ -28,7 +28,7 @@ function PhishingPage() {
 
       const response = await axios.post(
 
-        "import.meta.env.VITE_API_URL/analyze-url",
+        `${import.meta.env.VITE_API_URL}/analyze-url`,
 
         { url }
 
