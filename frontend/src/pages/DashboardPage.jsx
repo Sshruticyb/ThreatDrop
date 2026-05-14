@@ -30,12 +30,11 @@ function DashboardPage() {
 
     try {
 
-      const response =
-        await axios.get(
+      const response = await axios.get(
 
-          "import.meta.env.VITE_API_URL/dashboard-stats"
+  `${import.meta.env.VITE_API_URL}/dashboard-stats`
 
-        );
+);
 
 
 
