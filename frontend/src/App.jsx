@@ -104,7 +104,7 @@ function App() {
                   <Route
                     path="*"
                     element={
-                      <Navigate to="${import.meta.env.VITE_API_URL}/login" />
+                      <Navigate to="/login" />
                     }
                   />
 

@@ -9,7 +9,7 @@ function ProtectedRoute({ children }) {
 
   if (!token) {
 
-    return <Navigate to= "${import.meta.env.VITE_API_URL}/login "/>;
+    return <Navigate to= "/login "/>;
 
   }
 
