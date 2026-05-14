@@ -45,7 +45,7 @@ function App() {
 
 
 
-        {/* REGISTER */}
+        {/* REGISTER */}s
 
         <Route
           path="${import.meta.env.VITE_API_URL}/register"

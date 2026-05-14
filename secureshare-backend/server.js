@@ -195,7 +195,7 @@ quarantined: isQuarantined,
         quarantined: isQuarantined,
 
         downloadLink:
-          `http://localhost:5000/file/${newFile.uuid}`
+          `${import.meta.env.VITE_API_URL}/file/${newFile.uuid}`
 
       });
 
@@ -405,7 +405,7 @@ app.post("/analyze-url", (req, res) => {
   }
 
 });
-app.post("/register", async (req, res) => {
+app.post("${import.meta.env.VITE_API_URL}/register", async (req, res) => {
 
   try {
 
@@ -472,7 +472,7 @@ app.post("/register", async (req, res) => {
   }
 
 });
-app.post("/login", async (req, res) => {
+app.post("${import.meta.env.VITE_API_URL}/login", async (req, res) => {
 
   try {
 

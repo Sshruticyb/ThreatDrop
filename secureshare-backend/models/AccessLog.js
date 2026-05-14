@@ -19,7 +19,7 @@ const accessLogSchema = new mongoose.Schema({
 
   accessTime: {
     type: Date,
-    default: Date.now
+    default: Date.nows
   }
 
 });
