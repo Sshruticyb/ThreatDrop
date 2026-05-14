@@ -2,17 +2,19 @@ import { useState } from "react";
 
 import axios from "axios";
 
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+
 
 function LoginPage() {
+
+  const navigate = useNavigate();
+
+
 
   const [email, setEmail] = useState("");
 
   const [password, setPassword] = useState("");
-
-  const navigate = useNavigate();
-
 
 
 
@@ -22,20 +24,19 @@ function LoginPage() {
 
       const response = await axios.post(
 
-  `${import.meta.env.VITE_API_URL}/login`,
+        `${import.meta.env.VITE_API_URL}/login`,
 
-  {
+        {
 
-    email,
-    password
+          email,
+          password
 
-  }
+        }
 
-);
+      );
 
 
 
-      // SAVE TOKEN
       localStorage.setItem(
 
         "token",
@@ -62,9 +63,13 @@ function LoginPage() {
 
       navigate("/dashboard");
 
+
+
     } catch (error) {
 
       console.log(error);
+
+
 
       alert("Login failed");
 
@@ -74,75 +79,107 @@ function LoginPage() {
 
 
 
-
   return (
 
-    <div className="min-h-screen bg-black flex items-center justify-center text-white">
+    <div className="min-h-screen bg-black flex items-center justify-center p-6">
 
-      <div className="bg-zinc-900 border border-cyan-500 rounded-2xl p-10 w-[450px] shadow-2xl">
+      <div className="w-full max-w-md bg-zinc-900 border border-cyan-500 rounded-3xl p-10">
 
-        <h1 className="text-4xl font-bold text-cyan-400 text-center mb-3">
+
+
+        <h1 className="text-5xl font-bold text-cyan-400 text-center mb-4">
 
           ThreatDrop
 
         </h1>
 
-        <p className="text-zinc-400 text-center mb-8">
 
-          Secure Login
+
+        <p className="text-zinc-400 text-center mb-10">
+
+          Login To Continue
 
         </p>
 
 
 
         <input
+
           type="email"
+
           placeholder="Email"
+
           value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-          className="w-full bg-zinc-800 border border-cyan-500 rounded-xl p-4 outline-none mb-5"
+
+          onChange={(e) =>
+
+            setEmail(e.target.value)
+
+          }
+
+          className="w-full bg-zinc-800 border border-cyan-500 rounded-2xl px-5 py-4 text-white mb-5"
+
         />
 
 
 
         <input
+
           type="password"
+
           placeholder="Password"
+
           value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-          className="w-full bg-zinc-800 border border-cyan-500 rounded-xl p-4 outline-none mb-6"
+
+          onChange={(e) =>
+
+            setPassword(e.target.value)
+
+          }
+
+          className="w-full bg-zinc-800 border border-cyan-500 rounded-2xl px-5 py-4 text-white mb-8"
+
         />
 
 
 
         <button
+
+          type="button"
+
           onClick={handleLogin}
-          className="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-3 rounded-xl transition"
+
+          className="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-4 rounded-2xl transition"
+
         >
 
           Login
 
         </button>
-        <p className="text-zinc-400 text-center mt-6">
 
-  Don't have an account?
 
-  {" "}
 
-  <Link
-    to="${import.meta.env.VITE_API_URL}/register"
-    className="text-cyan-400 hover:underline"
-  >
+        <p className="text-zinc-400 text-center mt-8">
 
-    Register
+          Don't have an account?{" "}
 
-  </Link>
 
-</p>
+
+          <Link
+
+            to="/register"
+
+            className="text-cyan-400"
+
+          >
+
+            Register
+
+          </Link>
+
+        </p>
+
+
 
       </div>
 
@@ -151,5 +188,7 @@ function LoginPage() {
   );
 
 }
+
+
 
 export default LoginPage;
