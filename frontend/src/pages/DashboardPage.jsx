@@ -40,7 +40,7 @@ function DashboardPage() {
 
 
 
-        console.log(response.data);
+        console.log("NEW BUILD", response.data);
 
 
 
@@ -96,7 +96,7 @@ function DashboardPage() {
 
         <h1 className="text-6xl font-bold text-cyan-400 mb-4">
 
-          ThreatDrop Dashboard
+          ThreatDrop Security Dashboard
 
         </h1>
 
