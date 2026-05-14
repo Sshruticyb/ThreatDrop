@@ -24,7 +24,7 @@ function RegisterPage() {
 
       await axios.post(
 
-        "import.meta.env.VITE_API_URL/register",
+        "${import.meta.env.VITE_API_URL}/register",
 
         {
 

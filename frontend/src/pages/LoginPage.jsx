@@ -22,7 +22,7 @@ function LoginPage() {
 
       const response = await axios.post(
 
-        "import.meta.env.VITE_API_URL/login",
+        "${import.meta.env.VITE_API_URL}/login",
 
         {
 
@@ -134,7 +134,7 @@ function LoginPage() {
   {" "}
 
   <Link
-    to="/register"
+    to="${import.meta.env.VITE_API_URL}/register"
     className="text-cyan-400 hover:underline"
   >
 
