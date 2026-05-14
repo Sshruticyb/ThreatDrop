@@ -23,7 +23,7 @@ function Sidebar() {
 
 
 
-    navigate("${import.meta.env.VITE_API_URL}/login");
+    navigate("/login");
 
   };
 

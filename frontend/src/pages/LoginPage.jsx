@@ -1,22 +1,13 @@
 import { useState } from "react";
-
 import axios from "axios";
-
 import { Link, useNavigate } from "react-router-dom";
-
-
 
 function LoginPage() {
 
   const navigate = useNavigate();
 
-
-
   const [email, setEmail] = useState("");
-
   const [password, setPassword] = useState("");
-
-
 
   const handleLogin = async () => {
 
@@ -27,49 +18,27 @@ function LoginPage() {
         `${import.meta.env.VITE_API_URL}/login`,
 
         {
-
           email,
           password
-
         }
 
       );
 
-
-
       localStorage.setItem(
-
         "token",
-
         response.data.token
-
       );
-
-
 
       localStorage.setItem(
-
         "username",
-
         response.data.username
-
       );
-
-
-
-      alert("Login successful");
-
-
 
       navigate("/dashboard");
-
-
 
     } catch (error) {
 
       console.log(error);
-
-
 
       alert("Login failed");
 
@@ -77,15 +46,11 @@ function LoginPage() {
 
   };
 
-
-
   return (
 
-    <div className="min-h-screen bg-black flex items-center justify-center p-6">
+    <div className="min-h-screen bg-black flex items-center justify-center">
 
-      <div className="w-full max-w-md bg-zinc-900 border border-cyan-500 rounded-3xl p-10">
-
-
+      <div className="bg-zinc-900 p-10 rounded-3xl border border-cyan-500 w-[400px]">
 
         <h1 className="text-5xl font-bold text-cyan-400 text-center mb-4">
 
@@ -93,84 +58,45 @@ function LoginPage() {
 
         </h1>
 
+        <p className="text-zinc-400 text-center mb-8">
 
-
-        <p className="text-zinc-400 text-center mb-10">
-
-          Login To Continue
+          Login
 
         </p>
 
-
-
         <input
-
           type="email"
-
           placeholder="Email"
-
           value={email}
-
-          onChange={(e) =>
-
-            setEmail(e.target.value)
-
-          }
-
-          className="w-full bg-zinc-800 border border-cyan-500 rounded-2xl px-5 py-4 text-white mb-5"
-
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full mb-5 p-4 rounded-xl bg-zinc-800 text-white"
         />
-
-
 
         <input
-
           type="password"
-
           placeholder="Password"
-
           value={password}
-
-          onChange={(e) =>
-
-            setPassword(e.target.value)
-
-          }
-
-          className="w-full bg-zinc-800 border border-cyan-500 rounded-2xl px-5 py-4 text-white mb-8"
-
+          onChange={(e) => setPassword(e.target.value)}
+          className="w-full mb-8 p-4 rounded-xl bg-zinc-800 text-white"
         />
-
-
 
         <button
-
           type="button"
-
           onClick={handleLogin}
-
-          className="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-4 rounded-2xl transition"
-
+          className="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-4 rounded-xl"
         >
 
           Login
 
         </button>
 
+        <p className="text-center text-zinc-400 mt-6">
 
-
-        <p className="text-zinc-400 text-center mt-8">
-
-          Don't have an account?{" "}
-
-
+          No account?{" "}
 
           <Link
-
             to="/register"
-
             className="text-cyan-400"
-
           >
 
             Register
@@ -179,8 +105,6 @@ function LoginPage() {
 
         </p>
 
-
-
       </div>
 
     </div>
@@ -188,7 +112,5 @@ function LoginPage() {
   );
 
 }
-
-
 
 export default LoginPage;
