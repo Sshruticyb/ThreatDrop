@@ -39,7 +39,7 @@ function App() {
         {/* LOGIN */}
 
         <Route
-          path="${import.meta.env.VITE_API_URL}/login"
+          path=  "${import.meta.env.VITE_API_URL}/login"
           element={<LoginPage />}
         />
 

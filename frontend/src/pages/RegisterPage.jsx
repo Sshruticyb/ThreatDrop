@@ -18,41 +18,47 @@ function RegisterPage() {
 
 
 
-  const handleRegister = async () => {
+  const handleRegister = async (e) => {
 
-    try {
+  e.preventDefault();
 
-      await axios.post(
+  try {
 
-  `${import.meta.env.VITE_API_URL}/register`,
+    await axios.post(
 
-  {
+      `${import.meta.env.VITE_API_URL}/register`,
 
-    username,
-    email,
-    password
+      {
+
+        username,
+        email,
+        password
+
+      }
+
+    );
+
+
+
+    alert("Registration successful");
+
+
+
+    navigate("/login");
+
+  } catch (error) {
+
+    console.log(error);
+
+
+
+    alert("Registration failed");
 
   }
 
-);
-
-
-      alert("Registration successful");
-
-
-
-      navigate("${import.meta.env.VITE_API_URL}/login");
-
-    } catch (error) {
-
-      console.log(error);
-
-      alert("Registration failed");
-
-    }
-
-  };
-
+};
+   
+ 
 
 
 
